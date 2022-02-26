@@ -1,0 +1,94 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+apply from: "${rootProject.rootDir}/dependencies.gradle"
+apply from: "${rootProject.rootDir}/env.properties"
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        applicationId "com.example.klikdokter"
+        minSdk 23
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField 'String', 'BASE_URL', "\"${BASE_URL}\""
+        }
+        release {
+            buildConfigField 'String', 'BASE_URL', "\"${BASE_URL}\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation project(':base')
+    implementation project(':data')
+    implementation project(':domain')
+
+    implementation commonDependencies.kotlinStdLibJdk7
+    //androidx
+    implementation commonDependencies.androidxCoreKtx
+    implementation commonDependencies.androidxAppCompat
+    implementation commonDependencies.constraintLayout
+    implementation commonDependencies.swipeRefreshLayout
+    implementation commonDependencies.coordinatorLayout
+
+    //rx
+    implementation commonDependencies.rxBinding4
+    implementation commonDependencies.rxBinding4Material
+    implementation commonDependencies.rxBinding4AppCompat
+
+    // Dagger
+    implementation commonDependencies.dagger
+    implementation commonDependencies.daggerAndroid
+    implementation commonDependencies.daggerAndroidSupport
+    annotationProcessor commonDependencies.daggerCompiler
+    annotationProcessor commonDependencies.daggerAndroidProcessor
+    kapt commonDependencies.daggerCompiler
+    kapt commonDependencies.daggerAndroidProcessor
+
+    //retrofit
+    implementation connectionDependencies.retrofit2
+    implementation connectionDependencies.retrofit2Gson
+    implementation connectionDependencies.rxAdapter
+    implementation connectionDependencies.rxAdapter3
+
+    //okHttp
+    implementation connectionDependencies.okhttp3
+    implementation connectionDependencies.okhttp3Logging
+    testImplementation connectionDependencies.okhttp3MockWebServer
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+    implementation 'com.androidadvance:topsnackbar:1.1.1'
+
+    implementation commonDependencies.simpleStack
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

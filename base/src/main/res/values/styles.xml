@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Progress_Dialog">
+        <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+    </style>
+</resources>

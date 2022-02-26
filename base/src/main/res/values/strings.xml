@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My base</string>
+
+    <string name="error_general_message">We are experiencing problem to connect to our server. Please try again</string>
+    <string name="error_no_connection">Check your connection and try again</string>
+    <string name="error_request_timeout">The request timed out</string>
+</resources>
